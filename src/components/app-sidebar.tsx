@@ -49,7 +49,6 @@ export function AppSidebar() {
     },
     { href: '/wallet', icon: AnimatedWalletIcon, label: t('sidebar.healthWallet') },
     { href: '/government-policies', icon: () => <FileText className="mr-2 h-4 w-4" />, label: t('sidebar.governmentPolicies') },
-    { href: '/family', icon: AnimatedUsersIcon, label: t('sidebar.familyMembers') },
   ];
 
   return (

@@ -14,6 +14,9 @@ export type User = {
   name: string;
   email: string;
   role: 'patient' | 'doctor' | 'admin';
+  hasCompletedProfile?: boolean;
+  accountId?: string;
+  memberId?: string;
 };
 
 type AuthContextType = {
@@ -23,12 +26,13 @@ type AuthContextType = {
   signOut: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
+  markProfileCompleted: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // A default user so the app doesn't break.
-const defaultUser: User = { name: 'Aravind', email: 'aravind@example.com', role: 'patient' };
+const defaultUser: User = { name: 'Aravind', email: 'aravind@example.com', role: 'patient', hasCompletedProfile: true };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -61,13 +65,55 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return { ok: false, message: 'Invalid credentials.' };
       }
 
-      const authUser: User = { name: found.name, email: found.email, role: found.role };
+      let hasCompletedProfile = false;
+      let accountId: string | undefined = found.accountId;
+      let memberId: string | undefined = found.memberId;
+
+      if (found.role === 'patient') {
+        // Ensure patient has an accountId and primary memberId
+        if (!accountId) {
+          const nextAccountIdRaw = localStorage.getItem('nextAccountId');
+          const nextAccountId = nextAccountIdRaw ? parseInt(nextAccountIdRaw, 10) || 101 : 101;
+          accountId = String(nextAccountId);
+          memberId = '001';
+          found.accountId = accountId;
+          found.memberId = memberId;
+          localStorage.setItem('nextAccountId', String(nextAccountId + 1));
+          // Persist back to users list
+          localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        try {
+          const profileRaw = localStorage.getItem(`patientProfile:${found.email}`);
+          if (profileRaw) {
+            const profile = JSON.parse(profileRaw);
+            hasCompletedProfile = !!profile.completed;
+          }
+        } catch {
+          // ignore JSON errors
+        }
+      }
+
+      const authUser: User = {
+        name: found.name,
+        email: found.email,
+        role: found.role,
+        hasCompletedProfile,
+        accountId,
+        memberId,
+      };
       setUser(authUser);
       localStorage.setItem('authUser', JSON.stringify(authUser));
       setIsLoading(false);
 
       // redirect based on role
-      if (found.role === 'patient') router.push('/dashboard');
+      if (found.role === 'patient') {
+        if (hasCompletedProfile) {
+          router.push('/dashboard');
+        } else {
+          router.push('/profile');
+        }
+      }
       else if (found.role === 'doctor') router.push('/admin');
       else router.push('/');
 
@@ -89,7 +135,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return { ok: false, message: 'Email already registered. Please sign in.' };
       }
 
-      const newUser = { name, email, password, role };
+      let accountId: string | undefined;
+      let memberId: string | undefined;
+
+      if (role === 'patient') {
+        const nextAccountIdRaw = localStorage.getItem('nextAccountId');
+        const nextAccountId = nextAccountIdRaw ? parseInt(nextAccountIdRaw, 10) || 101 : 101;
+        accountId = String(nextAccountId);
+        memberId = '001';
+        localStorage.setItem('nextAccountId', String(nextAccountId + 1));
+      }
+
+      const newUser = { name, email, password, role, accountId, memberId };
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
 
@@ -101,12 +158,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.setItem('doctors', JSON.stringify(docs));
       }
 
-      const authUser: User = { name, email, role };
+      const authUser: User = {
+        name,
+        email,
+        role,
+        hasCompletedProfile: role === 'patient' ? false : true,
+        accountId,
+        memberId,
+      };
       setUser(authUser);
       localStorage.setItem('authUser', JSON.stringify(authUser));
       setIsLoading(false);
 
-      if (role === 'patient') router.push('/dashboard');
+      if (role === 'patient') router.push('/profile');
       else router.push('/admin');
 
       return { ok: true };
@@ -128,7 +192,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (raw) {
       try {
         const parsed = JSON.parse(raw) as User;
-        setUser(parsed);
+        let hydratedUser = parsed;
+
+        if (parsed.role === 'patient') {
+          try {
+            const profileRaw = localStorage.getItem(`patientProfile:${parsed.email}`);
+            if (profileRaw) {
+              const profile = JSON.parse(profileRaw);
+              hydratedUser = { ...parsed, hasCompletedProfile: !!profile.completed };
+            }
+          } catch {
+            // ignore JSON errors
+          }
+        }
+
+        setUser(hydratedUser);
       } catch (e) {
         // ignore
       }
@@ -137,9 +215,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!user;
 
+  const markProfileCompleted = () => {
+    setUser((prev) => {
+      if (!prev) return prev;
+      const updatedUser: User = { ...prev, hasCompletedProfile: true };
+      localStorage.setItem('authUser', JSON.stringify(updatedUser));
+      return updatedUser;
+    });
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, signIn, signUp, signOut, isAuthenticated, isLoading }}
+      value={{ user, signIn, signUp, signOut, isAuthenticated, isLoading, markProfileCompleted }}
     >
       {children}
     </AuthContext.Provider>
