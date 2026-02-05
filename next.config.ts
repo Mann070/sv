@@ -33,6 +33,22 @@ const nextConfig: NextConfig = {
   serverRuntimeConfig: {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   },
+  webpack(config, { dev }) {
+    // Reduce watcher work in development by ignoring build folders and OneDrive paths.
+    if (dev && config.watchOptions) {
+      config.watchOptions.ignored = [
+        /node_modules/,
+        /\.next/,
+        /\.git/,
+        /idx/,
+        /\.modified/,
+        /.*\\OneDrive.*$/i,
+      ];
+      // smaller aggregate timeout to coalesce rapid changes
+      config.watchOptions.aggregateTimeout = 300;
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
