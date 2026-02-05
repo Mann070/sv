@@ -1,0 +1,68 @@
+
+> nextn@0.1.0 typecheck
+> tsc --noEmit
+
+src/app/(app)/appointments/page.tsx(299,60): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/compare-prices/page.tsx(180,60): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/compare-prices/page.tsx(239,59): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/medicines/page.tsx(92,62): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/teleconsultation/page.tsx(106,66): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/teleconsultation/page.tsx(163,55): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/teleconsultation/page.tsx(166,54): error TS2554: Expected 1 arguments, but got 2.
+src/app/(app)/teleconsultation/page.tsx(210,59): error TS2554: Expected 1 arguments, but got 2.
+src/components/ui/animated-bot-icon.tsx(14,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 477 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-calendar-days-icon.tsx(17,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-dashboard-icon.tsx(24,8): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 477 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-lightbulb-icon.tsx(21,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-pill-icon.tsx(21,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-users-icon.tsx(17,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-video-icon.tsx(17,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+src/components/ui/animated-wallet-icon.tsx(17,6): error TS2322: Type '{ children: Element[]; suppressHydrationWarning?: boolean | undefined; color?: string | undefined; height: string | number; id?: string | undefined; lang?: string | undefined; ... 478 more ...; className: string; }' is not assignable to type 'SVGMotionProps<SVGSVGElement>'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<SVGSVGElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<SVGSVGElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<SVGSVGElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<SVGSVGElement>'.

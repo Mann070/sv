@@ -17,6 +17,9 @@ export type User = {
   hasCompletedProfile?: boolean;
   accountId?: string;
   memberId?: string;
+  licenseNumber?: string;
+  hospital?: string;
+  speciality?: string;
 };
 
 type AuthContextType = {
@@ -27,6 +30,8 @@ type AuthContextType = {
   isAuthenticated: boolean;
   isLoading: boolean;
   markProfileCompleted: () => void;
+  getPendingDoctors: () => User[];
+  verifyDoctor: (email: string) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -91,6 +96,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } catch {
           // ignore JSON errors
         }
+      } else if (found.role === 'doctor') {
+        try {
+          const profileRaw = localStorage.getItem(`doctorProfile:${found.email}`);
+          if (profileRaw) {
+             hasCompletedProfile = true;
+          }
+        } catch {
+          // ignore
+        }
       }
 
       const authUser: User = {
@@ -112,9 +126,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } else {
           router.push('/profile');
         }
+      } else if (found.role === 'doctor') {
+        if (hasCompletedProfile) {
+           router.push('/doctor/dashboard');
+        } else {
+           router.push('/doctor/profile');
+        }
+      } else {
+        router.push('/admin');
       }
-      else if (found.role === 'doctor') router.push('/doctor/dashboard');
-      else router.push('/admin');
 
       return { ok: true };
     } catch (err) {
@@ -167,7 +187,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         name,
         email,
         role,
-        hasCompletedProfile: role === 'patient' ? false : true,
+        hasCompletedProfile: false,
         accountId,
         memberId,
       };
@@ -176,7 +196,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(false);
 
       if (role === 'patient') router.push('/profile');
-      else if (role === 'doctor') router.push('/doctor/dashboard');
+      else if (role === 'doctor') router.push('/doctor/profile');
       else router.push('/admin');
 
       return { ok: true };
@@ -210,6 +230,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           } catch {
             // ignore JSON errors
           }
+        } else if (parsed.role === 'doctor') {
+             try {
+            const profileRaw = localStorage.getItem(`doctorProfile:${parsed.email}`);
+            if (profileRaw) {
+              hydratedUser = { ...parsed, hasCompletedProfile: true };
+            } else {
+               hydratedUser = { ...parsed, hasCompletedProfile: false };
+            }
+          } catch {
+            // ignore
+          }
         }
 
         setUser(hydratedUser);
@@ -230,9 +261,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const getPendingDoctors = (): User[] => {
+    // Placeholder implementation
+    return [];
+  };
+
+  const verifyDoctor = (email: string) => {
+    // Placeholder implementation
+    console.log(`Verifying doctor: ${email}`);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, signIn, signUp, signOut, isAuthenticated, isLoading, markProfileCompleted }}
+      value={{ user, signIn, signUp, signOut, isAuthenticated, isLoading, markProfileCompleted, getPendingDoctors, verifyDoctor }}
     >
       {children}
     </AuthContext.Provider>

@@ -12,12 +12,12 @@ const translations = { en, hi, ta };
 type LanguageContextType = {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, string | number>) => string;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-function getNestedTranslation(language: Language, key: string): string {
+function getNestedTranslation(language: Language, key: string, params?: Record<string, string | number>): string {
   const keys = key.split('.');
   let result: any = translations[language];
 
@@ -26,6 +26,14 @@ function getNestedTranslation(language: Language, key: string): string {
     if (result === undefined) {
       return key; // Return the key itself if translation is not found
     }
+  }
+
+  if (typeof result === 'string' && params) {
+    let text = result;
+    Object.entries(params).forEach(([paramKey, paramValue]) => {
+      text = text.replace(new RegExp(`{${paramKey}}`, 'g'), String(paramValue));
+    });
+    return text;
   }
 
   return result;
@@ -46,8 +54,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setLanguageState(lang);
   }, []);
 
-  const t = useCallback((key: string): string => {
-    return getNestedTranslation(language, key);
+  const t = useCallback((key: string, params?: Record<string, string | number>): string => {
+    return getNestedTranslation(language, key, params);
   }, [language]);
 
   return (

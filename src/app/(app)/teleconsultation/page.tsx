@@ -207,7 +207,7 @@ export default function TeleconsultationPage() {
             <DialogHeader>
               <DialogTitle>{t('teleconsultation.dialog.title')}</DialogTitle>
               <DialogDescription>
-                {t('teleconsultation.dialog.description', { name: selectedDoctor?.name })}
+                {t('teleconsultation.dialog.description', { name: selectedDoctor?.name || '' })}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
