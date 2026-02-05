@@ -19,21 +19,29 @@ import {
 import { DoctorsTable } from './doctors-table';
 import { MedicinesTable } from './medicines-table';
 import { Loader } from '@/components/ui/loader';
+import { useAuth } from '@/context/AuthContext';
 
 export default function AdminPage() {
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    const isAdminAuthenticated = localStorage.getItem('admin-authenticated') === 'true';
-    if (!isAdminAuthenticated) {
-      router.replace('/admin/login');
+    // Check if user is authenticated and is a doctor
+    if (!isAuthenticated || (user?.role !== 'doctor' && user?.role !== 'admin')) {
+      // Also support legacy admin-authenticated for backwards compatibility
+      const isLegacyAdmin = localStorage.getItem('admin-authenticated') === 'true';
+      if (!isLegacyAdmin) {
+        router.replace('/login');
+        return;
+      }
+      setIsAuthorized(true);
     } else {
-      setIsAuthenticated(true);
+      setIsAuthorized(true);
     }
-  }, [router]);
+  }, [isAuthenticated, user, router]);
 
-  if (!isAuthenticated) {
+  if (!isAuthorized) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader className="h-8 w-8" />

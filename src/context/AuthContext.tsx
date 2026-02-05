@@ -49,20 +49,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const raw = localStorage.getItem('users');
       const users: Array<any> = raw ? JSON.parse(raw) : [];
 
-      const found = users.find((u) => u.email === email);
+      const found = users.find((u) => u.email === email && u.role === role);
       if (!found) {
         setIsLoading(false);
+        const checkEmail = users.find((u) => u.email === email);
+        if (checkEmail) {
+          return { ok: false, message: `This email is registered as a ${checkEmail.role}. Please use the correct role.` };
+        }
         return { ok: false, message: 'Email not registered. Please sign up first.' };
-      }
-
-      if (found.role !== role) {
-        setIsLoading(false);
-        return { ok: false, message: `This account is registered as a ${found.role}. Use the correct portal.` };
       }
 
       if (found.password !== password) {
         setIsLoading(false);
-        return { ok: false, message: 'Invalid credentials.' };
+        return { ok: false, message: 'Invalid password.' };
       }
 
       let hasCompletedProfile = false;
