@@ -1,0 +1,388 @@
+
+{
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "reschedule": "Reschedule",
+    "areYouSure": "Are you sure?",
+    "goBack": "Go Back",
+    "yesCancel": "Yes, Cancel",
+    "error": "Error",
+    "disclaimer": "Disclaimer"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "symptomGuide": "AI Symptom Guide",
+    "appointments": "Appointments",
+    "medicines": "Medicines",
+    "treatmentPrices": "Treatment Prices",
+    "teleconsultation": "Teleconsultation",
+    "healthWallet": "Health Wallet",
+    "governmentPolicies": "Government Policies",
+    "familyMembers": "Family Members",
+    "myProfile": "My Profile",
+    "diagnostics": "Diagnostics"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "cards": {
+      "healthWallet": {
+        "title": "Health Wallet",
+        "subtitle": "+20.1% from last month"
+      },
+      "upcomingAppointments": {
+        "title": "Upcoming Appointments",
+        "next": "Next",
+        "none": "No appointments"
+      },
+      "familyMembers": {
+        "title": "Family Members",
+        "subtitle": "2 adults, 2 children"
+      },
+      "needHelp": {
+        "title": "Need Help?",
+        "description": "Try our AI Symptom Guide to find the right specialist.",
+        "button": "Start Guide"
+      }
+    },
+    "upcomingAppointments": {
+      "title": "Upcoming Appointments",
+      "description": "Manage your and your family's upcoming visits.",
+      "detailsButton": "Details",
+      "none": "No upcoming appointments.",
+      "viewAllButton": "View All Appointments"
+    },
+    "recentTeleconsultations": {
+      "title": "Recent Teleconsultations",
+      "viewAllButton": "View All"
+    },
+    "quickAccess": {
+      "symptomGuide": {
+        "title": "AI Symptom Guide",
+        "description": "Confused about your symptoms?"
+      },
+      "bookAppointment": {
+        "title": "Book an Appointment",
+        "description": "Find top doctors near you."
+      },
+      "comparePrices": {
+        "title": "Compare Treatment Prices",
+        "description": "Check costs for treatments."
+      },
+      "teleconsultation": {
+        "title": "Start a Teleconsultation",
+        "description": "Consult a doctor from home."
+      }
+    }
+  },
+  "appointments": {
+    "headerTitle": "Appointments",
+    "pageTitle": "Manage Your Appointments",
+    "pageDescription": "View, reschedule, or book new appointments for your family.",
+    "bookButton": "Book New Appointment",
+    "dialog": {
+      "title": "Book a New Appointment",
+      "description": "Fill in the details to schedule your next visit.",
+      "patientNameLabel": "Patient Name",
+      "patientNamePlaceholder": "e.g., John Doe",
+      "doctorLabel": "Doctor",
+      "doctorPlaceholder": "Select a doctor",
+      "dateLabel": "Appointment Date",
+      "datePlaceholder": "Pick a date",
+      "timeLabel": "Time",
+      "timePlaceholder": "Select a time",
+      "confirmButton": "Confirm Appointment"
+    },
+    "upcoming": {
+      "title": "Upcoming Appointments",
+      "description": "Here are your scheduled consultations.",
+      "none": "No upcoming appointments.",
+      "0": {
+        "doctor": "Dr. Anjali Sharma",
+        "speciality": "Cardiologist",
+        "time": "Tomorrow at 10:30 AM",
+        "hospital": "Apollo Hospital, Delhi"
+      },
+      "1": {
+        "doctor": "Dr. Vikram Singh",
+        "speciality": "Dermatologist",
+        "time": "June 28, 2024 at 3:00 PM",
+        "hospital": "Fortis Clinic, Mumbai"
+      },
+      "2": {
+        "doctor": "Dr. Priya Mehta (for Aarav)",
+        "speciality": "Pediatrician",
+        "time": "July 2, 2024 at 11:00 AM",
+        "hospital": "Max Healthcare, Bangalore"
+      }
+    },
+    "past": {
+      "title": "Past Appointments",
+      "description": "Review your previous consultation history.",
+      "viewReport": "View Report",
+      "0": {
+        "doctor": "Dr. Rohan Desai",
+        "speciality": "Orthopedist",
+        "time": "May 15, 2024",
+        "hospital": "City Hospital, Pune",
+        "report": {
+          "patient": "Rohan Sharma",
+          "age": 42,
+          "gender": "Male",
+          "diagnosis": "Left Knee - Grade 2 Meniscus Tear",
+          "notes": "Patient reported sharp pain and swelling in the left knee after a fall. MRI confirms a grade 2 tear of the medial meniscus. Advised conservative treatment with physiotherapy for 6 weeks. NSAIDs prescribed for pain management. Follow-up scheduled to assess progress and determine if surgical intervention is necessary.",
+          "prescription": "Ibuprofen 400mg (as needed for pain)",
+          "followUp": "Follow-up appointment in 6 weeks."
+        }
+      }
+    },
+    "report": {
+      "title": "Medical Report",
+      "subtitle": "Consultation with {doctor} on {time}.",
+      "patientName": "Patient Name",
+      "age": "Age",
+      "gender": "Gender",
+      "diagnosis": "Diagnosis",
+      "notes": "Doctor's Notes",
+      "prescription": "Prescription",
+      "followUp": "Follow-up Advice"
+    },
+    "cancelDialogDescription": "This action cannot be undone. This will permanently cancel your appointment.",
+    "toast": {
+      "incompleteTitle": "Incomplete Information",
+      "incompleteDescription": "Please fill out all fields to book an appointment.",
+      "bookedTitle": "Appointment Booked!",
+      "bookedDescription": "Your appointment has been successfully scheduled.",
+      "canceledTitle": "Appointment Canceled",
+      "canceledDescription": "The appointment has been successfully removed."
+    }
+  },
+  "family": {
+    "headerTitle": "Family Members",
+    "pageTitle": "Manage Your Family",
+    "pageDescription": "Add and view members of your family to manage their healthcare.",
+    "addButton": "Add New Member",
+    "listTitle": "Family List",
+    "yearsOld": "{age} years old",
+    "noMembers": "No family members added yet.",
+    "dialog": {
+      "title": "Add a New Family Member",
+      "description": "Enter the details of your family member.",
+      "nameLabel": "Full Name",
+      "relationshipLabel": "Relationship",
+      "relationshipPlaceholder": "e.g., Spouse, Child, Parent",
+      "ageLabel": "Age",
+      "addButton": "Add Member"
+    },
+    "toast": {
+      "addedTitle": "Member Added",
+      "addedDescription": "{name} has been added to your family list.",
+      "removedTitle": "Member Removed",
+      "removedDescription": "{name} has been removed from your family list."
+    },
+    "members": [
+      {
+        "name": "Meena Kumar",
+        "relationship": "Spouse"
+      },
+      {
+        "name": "Aarav Kumar",
+        "relationship": "Son"
+      },
+      {
+        "name": "Ananya Kumar",
+        "relationship": "Daughter"
+      }
+    ]
+  },
+  "symptomGuide": {
+    "headerTitle": "AI Symptom Guide",
+    "pageTitle": "Find the Right Specialist",
+    "pageDescription": "Describe your symptoms below, and our AI assistant will suggest the most appropriate medical department for you to consult. This is not a medical diagnosis.",
+    "form": {
+      "label": "Describe your symptoms",
+      "placeholder": "e.g., 'I have a persistent cough, chest pain, and difficulty breathing for the last 3 days.'",
+      "infoNote": "Please be as descriptive as possible for a better suggestion.",
+      "submitButton": {
+        "default": "Get Suggestion",
+        "pending": "Analyzing..."
+      }
+    },
+    "results": {
+      "title": "Suggestion Received",
+      "suggestedDepartment": "Suggested Department",
+      "reasoning": "Reasoning",
+      "careAdvice": "Immediate Care Advice",
+      "disclaimer": "This is an AI-powered suggestion and not a medical diagnosis. Please consult a qualified healthcare professional for an accurate diagnosis and treatment.",
+      "scheduleButton": "Schedule Appointment"
+    }
+  },
+  "medicines": {
+    "headerTitle": "Medicines",
+    "pageTitle": "Find Your Medicine",
+    "pageDescription": "Search for available medicines from the pharmacy.",
+    "searchPlaceholder": "Search for medicines...",
+    "packSize": "Pack Size",
+    "addToCartButton": "Add to Cart",
+    "notFound": {
+      "title": "No Medicines Found",
+      "description": "Your search for \"{searchTerm}\" did not return any results. Please try a different search term."
+    }
+  },
+  "prices": {
+    "headerTitle": "Treatment Prices",
+    "pageTitle": "Your Covered Treatment Prices",
+    "pageDescription": "Review the estimated costs for common medical procedures and explore EMI options.",
+    "table": {
+      "procedure": "Procedure",
+      "yourPrice": "Your Price (with Insurance)",
+      "emiOptions": "Easy EMI Options"
+    },
+    "footerNote": "*Prices are estimates and may vary based on hospital, room type, and specific medical needs.",
+    "emi": {
+        "calculateButton": "Calculate EMI",
+        "dialogTitle": "Easy EMI Calculator",
+        "dialogDescription": "Estimate your monthly payments for {procedure}.",
+        "loanAmount": "Loan Amount",
+        "tenure": "Tenure",
+        "months": "Months",
+        "monthlyPayment": "Your Monthly EMI",
+        "totalInterest": "Total Interest Payable",
+        "totalPayable": "Total Amount Payable",
+        "interestRateNote": "Calculations are based on an estimated 13% p.a. interest rate. This is for illustrative purposes only."
+    }
+  },
+  "teleconsultation": {
+    "headerTitle": "Teleconsultation",
+    "pageTitle": "Consult a Doctor from Home",
+    "pageDescription": "Connect with top specialists via video call at your convenience.",
+    "filterPlaceholder": "Filter by department",
+    "allDepartments": "All Departments",
+    "experience": "{years} of experience",
+    "languages": "Speaks: {languages}",
+    "instantCallButton": "Book Instant Call",
+    "scheduleCallButton": "Schedule Call",
+    "noDoctors": {
+      "title": "No Doctors Found",
+      "description": "There are no doctors available in the selected department. Please try another one."
+    },
+    "dialog": {
+      "title": "Schedule Video Consultation",
+      "description": "Select a date and time for your call with {name}.",
+      "availableNow": {
+        "title": "This doctor is available for an instant call.",
+        "description": "You can confirm to start the call immediately."
+      },
+      "dateLabel": "Consultation Date",
+      "confirmButton": "Confirm Booking"
+    },
+    "history": {
+      "title": "Consultation History",
+      "description": "Review your past teleconsultations."
+    },
+    "toast": {
+      "incompleteDescription": "Please select a date and time for the consultation.",
+      "bookedTitle": "Teleconsultation Booked!",
+      "bookedDescription": "Your video call with {name} has been scheduled."
+    }
+  },
+  "wallet": {
+    "headerTitle": "Health Wallet",
+    "balance": {
+      "title": "Current Balance",
+      "description": "Your available funds for healthcare expenses."
+    },
+    "addFunds": {
+      "title": "Add Funds to Wallet",
+      "description": "Top up your wallet using UPI.",
+      "amountLabel": "Amount",
+      "upiLabel": "Your UPI ID",
+      "button": "Add Funds via UPI"
+    },
+    "savings": {
+      "title": "Monthly Savings",
+      "description": "Your micro-savings contributions over the last 6 months."
+    },
+    "transactions": {
+      "title": "Recent Transactions",
+      "table": {
+        "description": "Description",
+        "date": "Date",
+        "amount": "Amount"
+      }
+    }
+  },
+  "months": {
+    "january": "Jan",
+    "february": "Feb",
+    "march": "Mar",
+    "april": "Apr",
+    "may": "May",
+    "june": "Jun"
+  },
+  "policies": {
+    "headerTitle": "Government Policies",
+    "pageTitle": "Check Your Policy Eligibility",
+    "pageDescription": "Fill in your details to find out which government health and welfare policies you may be eligible for. This tool provides guidance and is not a final determination.",
+    "form": {
+      "name": { "label": "Full Name", "placeholder": "e.g., Ramesh Kumar" },
+      "age": { "label": "Age", "placeholder": "e.g., 45" },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other"
+      },
+      "location": {
+        "label": "State/Union Territory",
+        "placeholder": "Select your state/UT"
+      },
+      "income": {
+        "label": "Annual Family Income (in INR)",
+        "placeholder": "e.g., 250000"
+      },
+      "upload": { "label": "Upload Treatment Document" },
+      "details": {
+        "label": "Describe the required medical treatment or situation",
+        "placeholder": "e.g., 'Requires heart bypass surgery', 'Maternity and childbirth expenses', 'Seeking support for disability'"
+      },
+      "preview": { "label": "Document Preview", "alt": "Treatment document preview" },
+      "infoNote": "Your information will be used to check for eligible policies.",
+      "submitButton": {
+        "default": "Check Eligibility",
+        "pending": "Checking Eligibility..."
+      }
+    },
+    "results": {
+      "title": "Eligibility Results",
+      "description": "Based on the information provided, here are the policies you may be eligible for.",
+      "eligible": "Eligible",
+      "notEligible": "Not Eligible",
+      "eligibilityReason": "Eligibility Reason",
+      "keyBenefits": "Key Benefits / Bonds",
+      "learnMore": "Learn More",
+      "disclaimer": "This information is AI-generated and for guidance purposes only. Eligibility is determined by official government agencies. Please verify details on the official policy websites.",
+      "none": {
+        "title": "No Eligible Policies Found",
+        "description": "We could not find any matching government policies based on the details you provided."
+      }
+    }
+  },
+  "diagnostics": {
+    "headerTitle": "Diagnostics",
+    "pageTitle": "Compare Lab Test Prices",
+    "pageDescription": "Find the best prices and quality for diagnostic tests from top-rated centers.",
+    "searchPlaceholder": "Search for a test (e.g., MRI Scan)",
+    "table": {
+      "testName": "Test Name",
+      "center": "Diagnostic Center",
+      "quality": "Quality Score",
+      "price": "Price",
+      "action": "Action",
+      "bookButton": "Book Now"
+    },
+    "notFound": "No tests found for your search. Please try another test name.",
+    "searchPrompt": "Enter a test name to start comparing prices."
+  }
+}

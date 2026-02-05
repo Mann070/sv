@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "Illustration of a happy family with a doctor, representing healthcare services.",
+      "imageUrl": "https://images.unsplash.com/photo-1746911053186-c727fb1410bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmYW1pbHklMjBkb2N0b3IlMjBpbGx1c3RyYXRpb258ZW58MHx8fHwxNzYxNjM2Mzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "family doctor illustration"
+    }
+  ]
+}
