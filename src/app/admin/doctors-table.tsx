@@ -39,7 +39,7 @@ export function DoctorsTable() {
     const doctorData: Doctor = {
       value:
         editingDoctor?.value ||
-        `doc-${Math.random().toString(36).substring(2, 9)}`,
+        `doc-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       name: formData.get('name') as string,
       speciality: formData.get('speciality') as string,
       hospital: formData.get('hospital') as string,
@@ -48,7 +48,7 @@ export function DoctorsTable() {
       availability: formData.get('availability') as string,
       avatarSeed:
         editingDoctor?.avatarSeed ||
-        `seed${Math.floor(Math.random() * 1000)}`,
+        `seed${Date.now()}-${Math.floor(Math.random() * 1000)}`,
     };
 
     if (editingDoctor) {

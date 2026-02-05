@@ -36,7 +36,7 @@ export default function DoctorDashboard() {
 
                 <main className="flex-1 overflow-y-auto p-6 space-y-6">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-3xl font-bold font-headline tracking-tight">Dashboard</h2>
+                        <h2 className="text-3xl font-bold font-headline tracking-tight">Doc Dash</h2>
                     </div>
 
                     {/* Stats Cards */}

@@ -239,7 +239,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const addFamilyMember = (member: Omit<FamilyMember, 'avatarSeed'>) => {
     const newMember = {
       ...member,
-      avatarSeed: `family${Math.random()}`
+      avatarSeed: `family${Date.now()}${Math.random().toString(36).slice(2, 9)}`
     };
     setFamilyMembers(prev => [...prev, newMember]);
   };

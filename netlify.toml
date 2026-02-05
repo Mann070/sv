@@ -5,3 +5,7 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+[[redirects]]
+  from = "/doctor/login"
+  to = "/login"
+  status = 301
