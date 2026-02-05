@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { HeartIcon } from '@/components/ui/HeartIcon';
+import { HospitalIcon } from '@/components/ui/HospitalIcon';
 import { useAuth } from '@/context/AuthContext';
 
 export default function DoctorLoginPage() {
@@ -37,7 +37,7 @@ export default function DoctorLoginPage() {
         <form onSubmit={handleLogin}>
           <CardHeader className="text-center">
             <div className="flex justify-center items-center gap-2 mb-4">
-              <HeartIcon className="text-primary" size={32} />
+              <HospitalIcon className="text-primary" size={32} />
               <h1 className="text-2xl font-bold font-headline text-primary">
                 Care Nexus
               </h1>
@@ -67,13 +67,13 @@ export default function DoctorLoginPage() {
               {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </CardContent>
-           <CardDescription className="p-6 pt-0 text-center text-sm">
-            Not a doctor or staff?{' '}
+          <CardDescription className="p-6 pt-0 text-center text-sm">
+            Don't have an account?{' '}
             <Link
-              href="/login"
+              href="/doctor/signup"
               className="font-semibold text-primary hover:underline"
             >
-              Patient Login
+              Sign up
             </Link>
           </CardDescription>
         </form>

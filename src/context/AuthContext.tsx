@@ -22,7 +22,7 @@ export type User = {
 type AuthContextType = {
   user: User | null;
   signIn: (email: string, password: string, role: 'patient' | 'doctor' | 'admin') => { ok: boolean; message?: string };
-  signUp: (user: { name: string; email: string; password: string; role: 'patient' | 'doctor' }) => { ok: boolean; message?: string };
+  signUp: (user: { name: string; email: string; password: string; role: 'patient' | 'doctor'; extraData?: any }) => { ok: boolean; message?: string };
   signOut: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
@@ -113,8 +113,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           router.push('/profile');
         }
       }
-      else if (found.role === 'doctor') router.push('/admin');
-      else router.push('/');
+      else if (found.role === 'doctor') router.push('/doctor/dashboard');
+      else router.push('/admin');
 
       return { ok: true };
     } catch (err) {
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const signUp = ({ name, email, password, role }: { name: string; email: string; password: string; role: 'patient' | 'doctor' }) => {
+  const signUp = ({ name, email, password, role, extraData }: { name: string; email: string; password: string; role: 'patient' | 'doctor'; extraData?: any }) => {
     setIsLoading(true);
     try {
       const raw = localStorage.getItem('users');
@@ -145,7 +145,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.setItem('nextAccountId', String(nextAccountId + 1));
       }
 
-      const newUser = { name, email, password, role, accountId, memberId };
+      const newUser = { name, email, password, role, accountId, memberId, ...extraData };
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
 
@@ -153,7 +153,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (role === 'doctor') {
         const rawDocs = localStorage.getItem('doctors');
         const docs = rawDocs ? JSON.parse(rawDocs) : [];
-        docs.push({ value: email.split('@')[0], name, speciality: '', hospital: '' });
+        docs.push({
+          value: email.split('@')[0],
+          name,
+          speciality: extraData?.department || '',
+          hospital: extraData?.hospital || '',
+          ...extraData
+        });
         localStorage.setItem('doctors', JSON.stringify(docs));
       }
 
@@ -170,6 +176,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(false);
 
       if (role === 'patient') router.push('/profile');
+      else if (role === 'doctor') router.push('/doctor/dashboard');
       else router.push('/admin');
 
       return { ok: true };
