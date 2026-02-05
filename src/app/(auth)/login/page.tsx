@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { HeartIcon } from '@/components/ui/HeartIcon';
+import { HospitalIcon } from '@/components/ui/HospitalIcon';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <CardHeader className="text-center">
             <div className="flex justify-center items-center gap-2 mb-4">
-              <HeartIcon className="text-primary" size={32} />
+              <HospitalIcon className="text-primary" size={32} />
               <h1 className="text-2xl font-bold font-headline text-primary">
                 Care Nexus
               </h1>
