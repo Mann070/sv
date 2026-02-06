@@ -5,10 +5,8 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
     Bell,
-    Search,
     LogOut,
     User,
     Settings
@@ -28,16 +26,8 @@ export function DoctorHeader() {
 
     return (
         <header className="h-16 border-b bg-card px-6 flex items-center justify-between sticky top-0 z-10">
-            <div className="flex items-center w-full max-w-md">
-                <div className="relative w-full">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input
-                        type="search"
-                        placeholder="Search..."
-                        className="w-full bg-background pl-9 md:w-[300px] lg:w-[400px]"
-                    />
-                </div>
-            </div>
+            <div className="flex-1" />
+
 
             <div className="flex items-center gap-4">
                 <Button variant="ghost" size="icon" className="relative">
