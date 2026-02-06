@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import { DoctorSidebar } from "@/components/doctor-sidebar";
-import { DoctorHeader } from "@/components/doctor-header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
@@ -197,75 +195,70 @@ export default function DoctorProfilePage() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50/50">
-      <DoctorSidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <DoctorHeader />
-
-        <main className="flex-1 overflow-y-auto p-6">
-          <Card className="max-w-3xl mx-auto shadow-sm">
-            <CardHeader className="text-center">
-              <div className="relative w-24 h-24 mx-auto mb-4">
-                <Avatar className="w-full h-full text-3xl">
-                  <AvatarFallback>{profile.name ? profile.name.charAt(0) : user.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-              </div>
-              <CardTitle className="font-headline text-3xl">{profile.name || user.name}</CardTitle>
-              <CardDescription>
-                <p>{user.email}</p>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div className="space-y-1 rounded-lg border bg-muted/40 p-4">
-                    <p className="text-sm font-semibold">Professional Details</p>
-                    <div className="space-y-2 text-sm">
-                      <p>
-                        <span className="font-medium">License Number: </span>
-                        <span>{profile.licenseNumber || "Not set"}</span>
-                      </p>
-                      <p>
-                        <span className="font-medium">Specialization: </span>
-                        <span>{profile.specialization || "Not set"}</span>
-                      </p>
-                      <p>
-                        <span className="font-medium">Experience: </span>
-                        <span>{profile.experience ? `${profile.experience} years` : "Not set"}</span>
-                      </p>
-                      <p>
-                        <span className="font-medium">Hospital: </span>
-                        <span>{profile.hospitalAffiliation || "Not set"}</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="space-y-1 rounded-lg border bg-muted/40 p-4">
-                    <p className="text-sm font-semibold">Personal Details</p>
-                    <div className="space-y-2 text-sm">
-                      <p>
-                        <span className="font-medium">Date of Birth: </span>
-                        <span>{profile.dateOfBirth || "Not set"}</span>
-                      </p>
-                      <p>
-                        <span className="font-medium">Gender: </span>
-                        <span>{profile.gender || "Not set"}</span>
-                      </p>
-                      <p>
-                        <span className="font-medium">Phone: </span>
-                        <span>{profile.phone || "Not set"}</span>
-                      </p>
-                    </div>
+    <>
+      <div className="p-6">
+        <Card className="max-w-3xl mx-auto shadow-sm">
+          <CardHeader className="text-center">
+            <div className="relative w-24 h-24 mx-auto mb-4">
+              <Avatar className="w-full h-full text-3xl">
+                <AvatarFallback>{profile.name ? profile.name.charAt(0) : user.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+            </div>
+            <CardTitle className="font-headline text-3xl">{profile.name || user.name}</CardTitle>
+            <CardDescription>
+              <p>{user.email}</p>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-1 rounded-lg border bg-muted/40 p-4">
+                  <p className="text-sm font-semibold">Professional Details</p>
+                  <div className="space-y-2 text-sm">
+                    <p>
+                      <span className="font-medium">License Number: </span>
+                      <span>{profile.licenseNumber || "Not set"}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium">Specialization: </span>
+                      <span>{profile.specialization || "Not set"}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium">Experience: </span>
+                      <span>{profile.experience ? `${profile.experience} years` : "Not set"}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium">Hospital: </span>
+                      <span>{profile.hospitalAffiliation || "Not set"}</span>
+                    </p>
                   </div>
                 </div>
-                <div className="flex gap-3 pt-2 border-t mt-2 pt-4">
-                  <Button variant="outline" onClick={() => setIsProfileDialogOpen(true)}>
-                    Edit Profile
-                  </Button>
+                <div className="space-y-1 rounded-lg border bg-muted/40 p-4">
+                  <p className="text-sm font-semibold">Personal Details</p>
+                  <div className="space-y-2 text-sm">
+                    <p>
+                      <span className="font-medium">Date of Birth: </span>
+                      <span>{profile.dateOfBirth || "Not set"}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium">Gender: </span>
+                      <span>{profile.gender || "Not set"}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium">Phone: </span>
+                      <span>{profile.phone || "Not set"}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </main>
+              <div className="flex gap-3 pt-2 border-t mt-2 pt-4">
+                <Button variant="outline" onClick={() => setIsProfileDialogOpen(true)}>
+                  Edit Profile
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <Dialog open={isProfileDialogOpen} onOpenChange={(open) => {
@@ -432,6 +425,6 @@ export default function DoctorProfilePage() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }
