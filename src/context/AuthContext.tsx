@@ -97,14 +97,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           // ignore JSON errors
         }
       } else if (found.role === 'doctor') {
-        try {
-          const profileRaw = localStorage.getItem(`doctorProfile:${found.email}`);
-          if (profileRaw) {
-             hasCompletedProfile = true;
-          }
-        } catch {
-          // ignore
-        }
+        // Check if doctor has completed profile
+        const doctorProfileRaw = localStorage.getItem(`doctorProfile:${found.email}`);
+        const doctorProfile = doctorProfileRaw ? JSON.parse(doctorProfileRaw) : null;
+        hasCompletedProfile = doctorProfile?.completed || false;
       }
 
       const authUser: User = {
@@ -128,9 +124,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
       } else if (found.role === 'doctor') {
         if (hasCompletedProfile) {
-           router.push('/doctor/dashboard');
+          router.push('/doctor/dashboard');
         } else {
-           router.push('/doctor/profile');
+          router.push('/doctor/profile');
         }
       } else {
         router.push('/admin');
@@ -187,7 +183,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         name,
         email,
         role,
-        hasCompletedProfile: false,
+        hasCompletedProfile: false, // Both patient and doctor start with incomplete profile
         accountId,
         memberId,
       };
@@ -231,12 +227,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             // ignore JSON errors
           }
         } else if (parsed.role === 'doctor') {
-             try {
+          try {
             const profileRaw = localStorage.getItem(`doctorProfile:${parsed.email}`);
             if (profileRaw) {
-              hydratedUser = { ...parsed, hasCompletedProfile: true };
+              const profile = JSON.parse(profileRaw);
+              hydratedUser = { ...parsed, hasCompletedProfile: !!profile.completed };
             } else {
-               hydratedUser = { ...parsed, hasCompletedProfile: false };
+              hydratedUser = { ...parsed, hasCompletedProfile: false };
             }
           } catch {
             // ignore
