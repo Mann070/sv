@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import { useAppContext } from "@/context/AppContext";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Users, Calendar, DollarSign, Activity } from "lucide-react";
 import {
@@ -25,6 +26,10 @@ const data = [
 
 export default function DoctorDashboard() {
     const { user } = useAuth();
+    const { upcomingAppointments } = useAppContext();
+
+    // Mock today's appointments for the card
+    const appointmentsToday = upcomingAppointments.slice(0, 3);
 
     return (
         <div className="p-6 space-y-6 max-w-7xl mx-auto">
@@ -50,8 +55,30 @@ export default function DoctorDashboard() {
                         <Calendar className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">28</div>
-                        <p className="text-xs text-muted-foreground">+15 from yesterday</p>
+                        <div className="space-y-4">
+                            {appointmentsToday.map((apt, idx) => (
+                                <div key={idx} className="flex flex-col space-y-1.5 p-3 rounded-lg bg-muted/30 border border-transparent hover:border-primary/20 hover:bg-primary/5 transition-all">
+                                    <div className="flex items-center justify-between">
+                                        <div className="font-bold text-base text-foreground">
+                                            {apt.patientName}
+                                        </div>
+                                        <div className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase tracking-tighter">
+                                            {apt.time.split(' at ')[1] || apt.time}
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center justify-between text-xs">
+                                        <span className="text-muted-foreground font-medium">{apt.speciality}</span>
+                                        <span className="text-[10px] text-muted-foreground italic">
+                                            {apt.time.includes('Tomorrow') ? 'Tomorrow' : 'Today'}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-4 pt-3 border-t flex items-center justify-between text-[11px] text-muted-foreground font-medium uppercase tracking-wider">
+                            <span>{appointmentsToday.length} Appointments scheduled</span>
+                            <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                        </div>
                     </CardContent>
                 </Card>
                 <Card>
