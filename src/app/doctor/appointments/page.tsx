@@ -74,7 +74,7 @@ export default function DoctorAppointmentsPage() {
                                                 <TableCell>
                                                     <div className="flex items-center gap-2">
                                                         <User className="h-4 w-4 text-muted-foreground" />
-                                                        <span>Patient {index + 1}</span>
+                                                        <span>{appointment.patientName}</span>
                                                     </div>
                                                 </TableCell>
                                                 <TableCell className="font-medium">

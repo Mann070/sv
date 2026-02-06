@@ -10,6 +10,9 @@ export type Appointment = {
   speciality: string;
   time: string;
   hospital: string;
+  patientName: string;
+  patientAge: number;
+  patientGender: string;
 };
 
 export type PastAppointment = Appointment & {
@@ -83,18 +86,27 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       speciality: t('appointments.upcoming.0.speciality'),
       time: t('appointments.upcoming.0.time'),
       hospital: t('appointments.upcoming.0.hospital'),
+      patientName: "Rahul Kumar",
+      patientAge: 35,
+      patientGender: "Male"
     },
     {
       doctor: t('appointments.upcoming.1.doctor'),
       speciality: t('appointments.upcoming.1.speciality'),
       time: t('appointments.upcoming.1.time'),
       hospital: t('appointments.upcoming.1.hospital'),
+      patientName: "Sita Devi",
+      patientAge: 29,
+      patientGender: "Female"
     },
     {
       doctor: t('appointments.upcoming.2.doctor'),
       speciality: t('appointments.upcoming.2.speciality'),
       time: t('appointments.upcoming.2.time'),
       hospital: t('appointments.upcoming.2.hospital'),
+      patientName: "Aarav Kumar",
+      patientAge: 12,
+      patientGender: "Male"
     },
   ], [t]);
 
@@ -104,8 +116,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       speciality: t('appointments.past.0.speciality'),
       time: t('appointments.past.0.time'),
       hospital: t('appointments.past.0.hospital'),
+      patientName: "Rohan Sharma",
+      patientAge: 42,
+      patientGender: "Male",
       report: {
-        patient: t('appointments.past.0.report.patient'),
+        patient: "Rohan Sharma",
         age: 42,
         gender: t('appointments.past.0.report.gender'),
         diagnosis: t('appointments.past.0.report.diagnosis'),

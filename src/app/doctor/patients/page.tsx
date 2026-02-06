@@ -23,7 +23,9 @@ export default function DoctorPatientsPage() {
     // In a real app, you'd have patient data linked to appointments
     const patientsWithAppointments = upcomingAppointments.map((apt, index) => ({
         id: index + 1,
-        patientName: `Patient ${index + 1}`,
+        patientName: apt.patientName,
+        age: apt.patientAge,
+        gender: apt.patientGender,
         appointmentTime: apt.time,
         speciality: apt.speciality,
         hospital: apt.hospital,

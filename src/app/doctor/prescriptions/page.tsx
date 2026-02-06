@@ -24,7 +24,10 @@ import {
     AlertCircle,
     ChevronRight,
     SearchX,
-    ClipboardList
+    ClipboardList,
+    User,
+    CalendarDays,
+    HeartPulse
 } from "lucide-react";
 import {
     Select,
@@ -49,6 +52,12 @@ export default function EPrescriptionPage() {
     const [draftPrescription, setDraftPrescription] = useState<PrescriptionItem[]>([]);
     const [selectedPatientId, setSelectedPatientId] = useState<string>("");
     const [isSending, setIsSending] = useState(false);
+
+    const selectedPatient = useMemo(() => {
+        if (!selectedPatientId || selectedPatientId === "none") return null;
+        const index = parseInt(selectedPatientId.split("-")[1]);
+        return upcomingAppointments[index];
+    }, [selectedPatientId, upcomingAppointments]);
 
     // Filter medicines based on search query
     const filteredMedicines = useMemo(() => {
@@ -145,7 +154,7 @@ export default function EPrescriptionPage() {
                             ) : (
                                 upcomingAppointments.map((apt, idx) => (
                                     <SelectItem key={idx} value={`patient-${idx}`}>
-                                        Patient {idx + 1}
+                                        {apt.patientName}
                                     </SelectItem>
                                 ))
                             )}
@@ -157,6 +166,45 @@ export default function EPrescriptionPage() {
                     </Button>
                 </div>
             </div>
+
+            {selectedPatient && (
+                <Card className="bg-primary/5 border-primary/20">
+                    <CardContent className="p-4">
+                        <div className="flex flex-wrap items-center gap-6">
+                            <div className="flex items-center gap-3">
+                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <User className="h-5 w-5 text-primary" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Patient Name</p>
+                                    <p className="font-bold text-lg leading-none">{selectedPatient.patientName}</p>
+                                </div>
+                            </div>
+                            <div className="h-8 w-px bg-primary/10 hidden md:block" />
+                            <div className="flex items-center gap-3">
+                                <CalendarDays className="h-5 w-5 text-primary/60" />
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Age / Gender</p>
+                                    <p className="font-medium">{selectedPatient.patientAge} Yrs / {selectedPatient.patientGender}</p>
+                                </div>
+                            </div>
+                            <div className="h-8 w-px bg-primary/10 hidden md:block" />
+                            <div className="flex items-center gap-3">
+                                <HeartPulse className="h-5 w-5 text-primary/60" />
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Diagnosis (Recent)</p>
+                                    <p className="font-medium">Routine Checkup</p>
+                                </div>
+                            </div>
+                            <div className="ml-auto">
+                                <Badge variant="outline" className="bg-background/50 border-primary/20 text-primary">
+                                    Patient ID: #{Math.floor(1000 + Math.random() * 9000)}
+                                </Badge>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Search & Selector Side */}
