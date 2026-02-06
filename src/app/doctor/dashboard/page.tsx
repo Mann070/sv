@@ -14,7 +14,14 @@ import {
     Tooltip,
     ResponsiveContainer
 } from "recharts";
-
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 const data = [
     { name: 'Jan', patients: 400 },
     { name: 'Feb', patients: 300 },
@@ -106,7 +113,54 @@ export default function DoctorDashboard() {
                 </Card>
             </div>
 
-            {/* Chart Section */}
+            {/* Recent Appointments Section */}
+            <Card className="border-none shadow-sm">
+                <CardHeader className="py-3 flex flex-row items-center justify-between">
+                    <div>
+                        <CardTitle className="text-base">Today's Schedule</CardTitle>
+                        <CardDescription className="text-xs">Your next few appointments</CardDescription>
+                    </div>
+                    <Button variant="ghost" size="sm" className="text-[10px] font-black tracking-widest text-primary uppercase">
+                        View Full
+                        <ChevronRight className="ml-1 h-3 w-3" />
+                    </Button>
+                </CardHeader>
+                <CardContent className="p-0 border-t border-gray-50">
+                    <Table>
+                        <TableBody>
+                            {upcomingAppointments.slice(0, 5).map((apt, idx) => (
+                                <TableRow key={idx} className="group hover:bg-gray-50/50 transition-colors cursor-pointer">
+                                    <TableCell className="py-2.5">
+                                        <div className="flex items-center gap-3">
+                                            <Avatar className="h-8 w-8 ring-2 ring-white">
+                                                <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${apt.patientName}`} />
+                                                <AvatarFallback className="text-[10px] font-bold">{apt.patientName.charAt(0)}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="flex flex-col">
+                                                <span className="text-[13px] font-bold text-gray-900 leading-tight">{apt.patientName}</span>
+                                                <span className="text-[10px] text-muted-foreground">{apt.speciality}</span>
+                                            </div>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="py-2.5">
+                                        <div className="flex items-center gap-1.5">
+                                            <Clock className="h-3 w-3 text-primary" />
+                                            <span className="text-[11px] font-black text-gray-700 uppercase tracking-tighter">
+                                                {apt.time.split(' at ')[1] || apt.time}
+                                            </span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="py-2.5 text-right">
+                                        <Badge className="bg-emerald-100 text-emerald-700 border-none text-[9px] font-black uppercase tracking-tighter">
+                                            Confirmed
+                                        </Badge>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
             <Card className="border-none shadow-sm">
                 <CardHeader className="py-3">
                     <CardTitle className="text-base">Patient Volume</CardTitle>

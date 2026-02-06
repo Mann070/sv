@@ -181,19 +181,49 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('doctors', JSON.stringify(initialDoctors));
     }
 
-    // Medicines - logic similar can be applied if needed
+    // Medicines
     const rawMeds = localStorage.getItem('medicines');
-    if (rawMeds) setMedicines(JSON.parse(rawMeds)); // Optional: persist medicines too if desired
+    if (rawMeds) setMedicines(JSON.parse(rawMeds));
 
-  }, [initialDoctors]);
+    // Appointments - sync with localStorage
+    const rawUpcoming = localStorage.getItem('upcomingAppointments');
+    if (rawUpcoming) {
+      const parsed = JSON.parse(rawUpcoming);
+      // Basic check to see if we have the new fields (patientName)
+      if (parsed.length > 0 && parsed[0].patientName) {
+        setUpcomingAppointments(parsed);
+      } else {
+        setUpcomingAppointments(initialUpcomingAppointments);
+        localStorage.setItem('upcomingAppointments', JSON.stringify(initialUpcomingAppointments));
+      }
+    } else {
+      localStorage.setItem('upcomingAppointments', JSON.stringify(initialUpcomingAppointments));
+    }
+
+    const rawPast = localStorage.getItem('pastAppointments');
+    if (rawPast) {
+      setPastAppointments(JSON.parse(rawPast));
+    } else {
+      localStorage.setItem('pastAppointments', JSON.stringify(initialPastAppointments));
+    }
+
+  }, [initialDoctors, initialUpcomingAppointments, initialPastAppointments]);
 
   // Appointment Management
   const addAppointment = (appointment: Appointment) => {
-    setUpcomingAppointments(prev => [appointment, ...prev]);
+    setUpcomingAppointments(prev => {
+      const updated = [appointment, ...prev];
+      localStorage.setItem('upcomingAppointments', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const cancelAppointment = (index: number) => {
-    setUpcomingAppointments(prev => prev.filter((_, i) => i !== index));
+    setUpcomingAppointments(prev => {
+      const updated = prev.filter((_, i) => i !== index);
+      localStorage.setItem('upcomingAppointments', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   // Doctor Management
